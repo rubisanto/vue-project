@@ -39,6 +39,7 @@ import MyNav from './components/MyNav.vue';
 import OrdersSlot from './components/OrdersSlot.vue';
 import TableOrders from './components/TableOrders.vue';
 
+
 export default({
   name: 'UI',
   data() {
