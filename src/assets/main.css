@@ -6,12 +6,10 @@ header {
   background: var(--app-light);
   padding: 0 var(--app-gutter);
 }
-
 .page {
   display: flex;
   min-height: calc(100vh - 65px - 50px);
 }
-
 nav {
   background: var(--app-darklight2);
   flex-basis: 250px;
@@ -22,7 +20,7 @@ main {
   flex-grow: 1;
 }
 
-footer{
+footer {
   background: var(--app-light);
   position: fixed;
   bottom: 0;
