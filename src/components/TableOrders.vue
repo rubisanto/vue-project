@@ -6,8 +6,8 @@
     <!-- affichage des orders -->
     <tr v-for="(order, i) in orders" :key="order.id" >
         <td>
-            <button @click="deleteOrder(i)">Supprimer</button>
-            <button @click="editOrder(i)">Editer</button>
+            <button @click="deleteOrder(i)"><BIconTrashFill/></button>
+            <button @click="editOrder(i)"><BIconPencilSquare /></button>
         </td>
         <td>{{ order.typePresta }}</td>
         <td>{{ order.client }}</td>
@@ -69,6 +69,9 @@ table{
 }
 tr:nth-child(odd) {
     background-color: #f2f2f2;
+}
+th, td {
+    padding: 10px 10px;
 }
 
 .OPTION{
