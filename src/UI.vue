@@ -1,7 +1,8 @@
 <template>
 <!-- interface affichée dans le navigateur -->
 <myHeader />
-<myNav />
+<div class="page"><myNav /></div>
+
 <myFooter />
 </template>
 
