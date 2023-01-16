@@ -1,5 +1,6 @@
 <template>
     <footer>
+        
         Copyright &copy; {{ annee }} - Moi - Tous droits réservés
     </footer>
 </template>
@@ -10,6 +11,7 @@ export default ({
     name: 'MyFooter',
     data() {
         return {
+            // creer une variable JS pour afficher l'année en cours
             annee: new Date().getFullYear()
         }
     },
