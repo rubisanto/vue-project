@@ -1,7 +1,7 @@
 <template>
-    <MyHeader />
+    <MyHeader :titre="titre" :statut="open" @ouvrir="ouvrir"/>
     <div class="page">
-      <MyNav />
+      <MyNav  :statut="open" @chgTitre="chgTitre"/>
       <main>
         
         Contenu de la page
@@ -40,7 +40,9 @@
     name: 'UI',
     data() {
       return {
-        ok: true
+        ok: true,
+        open: true,
+        titre: 'Mon CRM',
       }
     },
     methods: {
@@ -55,7 +57,13 @@
         },
         keyup() {
             alert('Vous avez cliqué sur la touche haut');
-        }
+        },
+      ouvrir() {
+        this.open = !this.open;
+      },
+      chgTitre(titre) {
+        this.titre = "mon nouveau titre";
+      }
     },
     components: { MyHeader, MyNav, MyFooter}
   });
