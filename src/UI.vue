@@ -24,7 +24,7 @@
       <div @click.left="lclic" @click.prevent.right="rclic">Une souris verte</div>
 
       <OrdersSlot>{{ orders.length }}</OrdersSlot>
-      <TableOrders :orders="orders" :headers="headers" @supp="supp" />
+      <TableOrders :orders="orders" :headers="headers" @supp="supp" @chgSts="chgSts" />
     </main>
   </div>
   <MyFooter />
@@ -125,6 +125,16 @@ export default({
       // trouver l'index dans le tableau et le supprimer (slice) 
       // let index = this.orders.findIndex(order => order.id === id);
       // this.orders.splice(index, 1);
+
+    },
+    chgSts(id, state){
+      this.orders.forEach(order => {
+        if(order.id === id){
+          order.state = state;
+        }
+      });
+      console.log(this.orders);
+
 
     }
   },

@@ -19,8 +19,16 @@
         <!-- calculer le total ttc -->
         <td>{{ totalTTC(order) }}</td>        
         <td>{{ order.comment }}</td>
-        <!-- afficher le statut avec le style associé au résultat -->
-        <td :class="order.state">{{ order.state }}</td>
+        <!-- afficher le statut avec le style associé au résultat en pouvant le modifier-->
+        <td :class="order.state">
+            <select v-model="order.state" @change="$emit('chgSts',order.id, order.state )" >
+            
+                <option  value="OPTION">OPTION</option>
+                <option  value="CONFIRMED">CONFIRMED</option>
+                <option  value="CANCELED">CANCELED</option>
+            </select>
+        </td>
+        <!-- <td :class="order.state">{{ order.state }}</td> -->
     </tr>
 
 </table>
