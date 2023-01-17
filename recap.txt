@@ -1,0 +1,32 @@
+orders: [
+        {
+          tjmHt: 1200,
+          nbJours: 100,
+          tva: 20,
+          state: 'CONFIRMED',
+          typePresta: 'Formation',
+          client: 'M2I',
+          comment: 'Merci pour la commande',
+          id: 1
+        },
+        {
+          tjmHt: 1000,
+          nbJours: 20,
+          tva: 20,
+          state: 'CANCELED',
+          typePresta: 'Coaching',
+          client: 'MI2',
+          comment: 'Oups',
+          id: 2
+        },
+        {
+          tjmHt: 1300,
+          nbJours: 10,
+          tva: 20,
+          state: 'OPTION',
+          typePresta: 'Formation',
+          client: 'MI6',
+          comment: 'En attente de la commande',
+          id: 3
+        }
+      ]

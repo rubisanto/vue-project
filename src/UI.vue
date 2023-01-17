@@ -1,4 +1,6 @@
 <template>
+  <!-- n'afficher le tableau que si il y a des éléments dans order
+  sinon message pour dire qu'il n'y a rien à afficher  -->
   <MyHeader v-bind:titre="titre" :statut="open" @ouvrir="ouvrir" />
   <div class="page">
     <MyNav :statut="open" @chgTitre="chgTitre" />
@@ -22,7 +24,7 @@
       <div @click.left="lclic" @click.prevent.right="rclic">Une souris verte</div>
 
       <OrdersSlot>{{ orders.length }}</OrdersSlot>
-      <TableOrders :orders="orders" :headers="headers" />
+      <TableOrders :orders="orders" :headers="headers" @supp="supp" />
     </main>
   </div>
   <MyFooter />
@@ -112,6 +114,18 @@ export default({
     // la demande de changement de titre vient du composant enfant <MyNav />
     chgTitre() {
       this.titre = "Mon nouveau titre";
+    },
+    supp(id) {
+      console.log('id');
+      // trouver l'élément par son id et le supprimer de orders
+      // creer un nouveau tableau sans l'élément à supprimer
+      let nouveauTableau = this.orders.filter(order => order.id !== id)
+      this.orders =  nouveauTableau;
+
+      // trouver l'index dans le tableau et le supprimer (slice) 
+      // let index = this.orders.findIndex(order => order.id === id);
+      // this.orders.splice(index, 1);
+
     }
   },
   // déclaration des composants affichés sur la page

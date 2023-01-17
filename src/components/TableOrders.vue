@@ -6,9 +6,10 @@
     <!-- affichage des orders -->
     <tr v-for="(order, i) in orders" :key="order.id" >
         <td>
-            <button @click="deleteOrder(i)"><BIconTrashFill/></button>
+            <button @click="$emit('supp', order.id)" class="iconSupp"><BIconTrashFill/></button>
             <button @click="editOrder(i)"><BIconPencilSquare /></button>
         </td>
+        
         <td>{{ order.typePresta }}</td>
         <td>{{ order.client }}</td>
         <td>{{ order.tva }}</td>
@@ -39,9 +40,6 @@ export default ({
         }
     },
     methods: {
-        deleteOrder(i) {
-            this.$emit('delete-order', i);
-        },
         editOrder(i) {
             this.$emit('edit-order', i);
         },
@@ -82,5 +80,9 @@ th, td {
 }
 .CANCELED{
     background: var(--app-error);
+}
+
+.iconSupp:hover {
+    cursor: pointer
 }
 </style>
