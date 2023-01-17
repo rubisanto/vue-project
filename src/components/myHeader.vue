@@ -1,78 +1,77 @@
 <template>
     <header>
-        <BIconList class="x3" v-show="!statut" @click="$emit('ouvrir')"/>
-        <BIconXSquare class="x3" v-show="statut"  @click="ouvrir"/>
-        <h1 :style="monStyle">{{ titre }}</h1>
+      <BIconList class="x3" v-show="!statut"  @click="$emit('ouvrir')"/>
+      <BIconXSquare class="x3" v-show="statut" @click="ouvrir"/>
+      <h1 :style="monStyle">{{ titre }}</h1>
+      <p>{{ cpt }} <button @click="increment">++</button></p>
     </header>
-</template>
-
-<script>
-import {BIconList, BIconXSquare} from 'bootstrap-icons-vue';
-export default ({
+  </template>
+  
+  <script>
+  import { BIconList, BIconXSquare } from 'bootstrap-icons-vue'; //pour bi-list
+  //import du mixin
+  import OrderMixin from '../mixins/OrderMixin';
+  export default({
     name: 'MyHeader',
     data() {
-        return {
-            titre: 'Mon CRM',
-            monStyle: {
-                color: 'red'
-            }
-        }
+      return {
+        /*titre: 'Mon CRM',*/
+        monStyle: {color: 'red'}
+      }
     },
-    // propriétés du composant parent
+    // propriétés venant du composant parent 
     props: {
-        titre: {
-            type: String
-            
-        },
-        statut: {
-            type: Boolean,
-        }
+      titre: String,
+      statut: Boolean
     },
-    // Déclaration des composants utilisés dans le template
-    components: {BIconList, BIconXSquare},
+    // déclaration des composants de la page 
+    components: {
+      BIconList, BIconXSquare
+    },
+    // déclaration des mixins
+    mixins: [OrderMixin],
+    // dans methods on place nos fonctions perso
     methods: {
-        ouvrir() {
-            console.log('ouvrir');
-            this.$emit('ouvrir'); // émet un évènement au composant parent
-        },
+      ouvrir() {
+        //console.log('ouvrir');
+        this.$emit('ouvrir'); //émission d'un évènement vers le composant parent
+      }
     },
     beforeCreate() {
-        console.log('avant la création du composant');
+      console.log('avant la création du composant');
     },
     created() {
-        console.log('après la création du composant');
+      console.log('composant créé');
     },
     beforeMount() {
-        console.log('avant le montage du composant');
+      console.log('composant créé mais pas encore chargé');
     },
-    mounted() {
-        console.log('composant chargé dans le navigateur pret ');
-       
+    mounted() { //le plus utilisé
+      console.log('composant chargé dans le navigateur et pret');
+      //this.titre = 'Nouveau titre';
+      //this.monStyle.color = 'blue';
     },
     beforeUpdate() {
-        console.log('avant la mise à jour du composant');
+      console.log('le composant va être mis à jour');
     },
     updated() {
-        console.log('après la mise à jour du composant');
+      console.log('le composant a été mis à jour');
     },
     beforeUnmount() {
-        console.log('avant le démontage du composant');
-    },
-    
-});
-</script>
-
-<style scoped>
-header {
+      console.log('le composant va être détruit');
+    }
+  })
+  </script>
+  
+  <style scoped>
+  header {
     display: flex;
-}
-
-h1 {
+  }
+  h1 {
     font-size: 2em;
-}
-
-.x3 {
+  }
+  .x3 {
     font-size: 2em;
-
-}
-</style>
+    margin-right: 5px;
+  }
+  </style>

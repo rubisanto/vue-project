@@ -1,96 +1,91 @@
 <template>
-<table>
-    <tr>
+    <!-- n'afficher le tableau que si il y a des éléments dans orders 
+        sinon message pour dire qu'il n'y a rien à afficher -->
+    <table>
+      <tr>
         <th v-for="(head, i) in headers" :key="i">{{ head }}</th>
-    </tr>
-    <!-- affichage des orders -->
-    <tr v-for="(order, i) in orders" :key="order.id" >
+      </tr>
+      <!-- affichage des orders -->
+      <tr v-for="order in orders" :key="order.id">
         <td>
-            <button @click="$emit('supp', order.id)" class="iconSupp"><BIconTrashFill/></button>
-            <button @click="editOrder(i)"><BIconPencilSquare /></button>
+          <BIconPencilSquare />
+          <!-- pour la suppression un demande au parent de supprimer l'élément du tableau orders -->
+          <b-icon-trash-fill @click="$emit('supp', order.id)" class="iconSupp"/>
         </td>
-        
         <td>{{ order.typePresta }}</td>
         <td>{{ order.client }}</td>
-        <td>{{ order.tva }}</td>
+        <td>{{  order.tva }}</td>
         <td>{{ order.nbJours }}</td>
         <td>{{ order.tjmHt }}</td>
-        <td>{{ totalHT(order.nbJours, order.tjmHt) }}</td>
-        <!-- calculer le total ttc -->
-        <td>{{ totalTTC(order) }}</td>        
-        <td>{{ order.comment }}</td>
-        <!-- afficher le statut avec le style associé au résultat en pouvant le modifier-->
-        <td :class="order.state">
-            <select v-model="order.state" @change="$emit('chgSts',order.id, order.state )" >
-            
-                <option  value="OPTION">OPTION</option>
-                <option  value="CONFIRMED">CONFIRMED</option>
-                <option  value="CANCELED">CANCELED</option>
-            </select>
+        <td>
+          {{ totalHT(order.nbJours, order.tjmHt)}}
         </td>
-        <!-- <td :class="order.state">{{ order.state }}</td> -->
-    </tr>
-
-</table>
-
-</template>
-
-<script>
-import { BIconPencilSquare, BIconTrashFill } from 'bootstrap-icons-vue';
-export default ({
+        <td>
+          {{ totalTTC(order) }}
+        </td>
+        <td>{{  order.comment }}</td>
+        <td :class="order.state">
+          <select v-model="order.state" @change="$emit('chgSts', order.id, order.state)" :class="order.state">
+            <option>CONFIRMED</option>
+            <option>OPTION</option>
+            <option>CANCELED</option>
+          </select>
+        </td>
+      </tr>
+    </table>
+  </template>
+  
+  <script>
+  // bi-pencil-square => BIconPencilSquare
+  import { BIconPencilSquare, BIconTrashFill } from 'bootstrap-icons-vue';
+  export default({
     name: 'TableOrders',
     props: {
-        orders: {
-            type: Object,
-        },
-        headers: {
-            type: Object,
-        }
+      orders: Object,
+      headers: Object
     },
     methods: {
-        editOrder(i) {
-            this.$emit('edit-order', i);
-        },
-        totalHT(nbJours, tjmHt) {
-            return nbJours * tjmHt;
-        },
-        totalTTC(order) {
-            return order.nbJours * order.tjmHt * (100+order.tva) / 100;
-        },
+      totalHT(nbJours, tjmHt) {
+        return nbJours * tjmHt
+      },
+      totalTTC({nbJours, tjmHt, tva}) {
+        return (nbJours * tjmHt * (100+tva)/100);
+      }
     },
-    components: {
-        BIconPencilSquare,
-        BIconTrashFill
-    },
-})
-</script>
-
-<style scoped>
-table{
-    
+    /* ne pas oublier de déclarer les composants importés */
+    components: { BIconPencilSquare, BIconTrashFill }
+  });
+  </script>
+  
+  <style scoped>
+  table {
     width: 90%;
-    margin: 40px auto;
+    margin: 20px auto;
     border: 1px solid silver;
     border-collapse: collapse;
-}
-tr:nth-child(odd) {
-    background-color: #f2f2f2;
-}
-th, td {
-    padding: 10px 10px;
-}
-
-.OPTION{
+    font-size: 1.4em;
+  }
+  th {
+    background: var(--app-dark);
+    color: var(--app-light);
+  }
+  th, td {
+    padding: 10px 0px;
+  }
+  tr:nth-child(odd) {
+    background: var(--app-dark);
+    color: var(--app-light);
+  }
+  .OPTION {
     background: var(--app-warning);
-}
-.CONFIRMED{
+  }
+  .CONFIRMED {
     background: var(--app-success);
-}
-.CANCELED{
+  }
+  .CANCELED {
     background: var(--app-error);
-}
-
-.iconSupp:hover {
-    cursor: pointer
-}
-</style>
+  }
+  .iconSupp:hover {
+    cursor: pointer;
+  }
+  </style>

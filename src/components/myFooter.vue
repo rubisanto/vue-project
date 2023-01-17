@@ -1,25 +1,27 @@
 <template>
-    <footer>
-        
-        Copyright &copy; {{ annee }} - Moi - Tous droits réservés
+    <footer>Copyright &copy; {{ annee }} {{ new Date().getFullYear() }} - Moi
+      {{ cpt }} <button @click="decrement">--</button>
     </footer>
-</template>
-
-
-<script>
-export default ({
+    
+  </template>
+  
+  <script>
+  import OrderMixin from '../mixins/OrderMixin';
+  export default({
     name: 'MyFooter',
     data() {
-        return {
-            // creer une variable JS pour afficher l'année en cours
-            annee: new Date().getFullYear()
-        }
+      return {
+        //créer une variable JS pour afficher l'année en dynamique
+        annee: new Date().getFullYear()
+      }
     },
-});
-</script>
-
-<style scoped>
-footer {
+    mixins: [OrderMixin],
+  
+  })
+  </script>
+  
+  <style scoped>
+  footer {
     text-align: center;
-}
-</style>
+  }
+  </style>
