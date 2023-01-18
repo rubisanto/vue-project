@@ -43,20 +43,31 @@
   ],
   "clients": [
     {
-      "nom": "Christophe",
-      "tva": 20,
-      "totalCaHt": 12000,
-      "state": "ACTIVE",
-      "comment": "Wesh ! Commentaire pour client Christophe",
-      "id": 1
+      "compagny": "carrefour ",
+      "firstname": "test",
+      "lastname": " test2",
+      "phone": " 01 02 03 05 056",
+      "mobile": "0600 5 95 95 95",
+      "mail": " carr@mail.com",
+      "id": 2
     },
     {
-      "state": "INACTIVE",
-      "tva": 20,
-      "id": 2,
-      "nom": "Modus",
-      "totalCaHt": 120000,
-      "comment": "Commentaire pour clien Modus"
+      "compagny": "leclerc ",
+      "firstname": "test3",
+      "lastname": " test3",
+      "phone": " 01 100 00 000 000",
+      "mobile": "0600 9 999 999",
+      "mail": " leclerc@mail.fr",
+      "id": 3
+    },
+    {
+      "compagny": "test final",
+      "firstname": "final",
+      "lastname": "test",
+      "phone": "00000000",
+      "mobile": "00000000",
+      "mail": "cavamarcharcher@test.fr",
+      "id": 4
     }
   ]
 }
